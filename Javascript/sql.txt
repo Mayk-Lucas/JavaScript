@@ -1,0 +1,6 @@
+select sum(p.unitario * p.quantidade) as 'Total', 
+p.movimentacao, r.nome as 'Recurso', e.nome as 'Pessoa', u.nome as 'UF' from pedido p
+left join recurso r on (r.chave_recurso = p.chave_recurso)
+left join pessoa e on (e.chave_pessoa = p.chave_pessoa)
+left join uf u on (u.chave_uf = e.chave_uf)
+where p.movimentacao between '2006-01-01' and '2006-01-31' group by p.chave_pedido;
